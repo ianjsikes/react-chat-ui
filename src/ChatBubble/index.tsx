@@ -50,7 +50,8 @@ export default class ChatBubble extends React.Component {
         >
           <div
             style={{
-              ...styles.chatbubbleWrapper
+              ...styles.chatbubbleWrapper,
+              overflow: "visible"
             }}
           >
             <div style={chatBubbleStyles}>
