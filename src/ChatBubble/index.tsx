@@ -2,7 +2,7 @@ import * as React from "react";
 import { Tooltip } from "rebass";
 import ChatBubbleProps from "./interface";
 import styles from "./styles";
-import moment from "moment";
+import moment = require("moment");
 
 const defaultBubbleStyles = {
   userBubble: {},
