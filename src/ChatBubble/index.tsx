@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Tooltip } from "rebass";
+import { Small } from "rebass";
 import ChatBubbleProps from "./interface";
 import styles from "./styles";
 import moment = require("moment");
@@ -42,27 +42,6 @@ export default class ChatBubble extends React.Component {
             ...userBubble
           };
 
-    if (this.props.message.timestamp) {
-      return (
-        <Tooltip
-          style={{ zIndex: 1000 }}
-          text={moment(this.props.message.timestamp).fromNow()}
-        >
-          <div
-            style={{
-              ...styles.chatbubbleWrapper,
-              overflow: "visible"
-            }}
-          >
-            <div style={chatBubbleStyles}>
-              <p style={{ ...styles.p, ...text }}>
-                {this.props.message.message}
-              </p>
-            </div>
-          </div>
-        </Tooltip>
-      );
-    }
     return (
       <div
         style={{
@@ -72,6 +51,9 @@ export default class ChatBubble extends React.Component {
         <div style={chatBubbleStyles}>
           <p style={{ ...styles.p, ...text }}>{this.props.message.message}</p>
         </div>
+        {this.props.message.timestamp ? (
+          <Small>{moment(this.props.message.timestamp).fromNow()}</Small>
+        ) : null}
       </div>
     );
   }

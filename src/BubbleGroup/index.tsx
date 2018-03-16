@@ -1,8 +1,10 @@
-import * as React from 'react';
-import BubbleGroupInterface from './interface';
-import DefaultChatBubble from '../ChatBubble';
-import Message from '../Message';
-import styles from './styles';
+import * as React from "react";
+import BubbleGroupInterface from "./interface";
+import DefaultChatBubble from "../ChatBubble";
+import Message from "../Message";
+import { Small } from "rebass";
+import styles from "./styles";
+import moment = require("moment");
 
 export default class BubbleGroup extends React.Component {
   props;
@@ -21,7 +23,7 @@ export default class BubbleGroup extends React.Component {
       bubbleStyles,
       showSenderName,
       chatBubble,
-      senderName,
+      senderName
     } = this.props;
     const ChatBubble = chatBubble || DefaultChatBubble;
     const sampleMessage = messages[0];
@@ -40,7 +42,7 @@ export default class BubbleGroup extends React.Component {
     return (
       <div style={styles.chatbubbleWrapper}>
         {showSenderName &&
-          ((senderName || sampleMessage.senderName) !== '' &&
+          ((senderName || sampleMessage.senderName) !== "" &&
             (sampleMessage.id !== 0 && (
               <h5 style={styles.bubbleGroupHeader}>
                 {senderName || sampleMessage.senderName}
