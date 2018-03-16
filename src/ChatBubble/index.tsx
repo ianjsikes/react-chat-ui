@@ -1,11 +1,13 @@
-import * as React from 'react';
-import ChatBubbleProps from './interface';
-import styles from './styles';
+import * as React from "react";
+import { Tooltip } from "rebass";
+import ChatBubbleProps from "./interface";
+import styles from "./styles";
+import moment from "moment";
 
 const defaultBubbleStyles = {
   userBubble: {},
   chatbubble: {},
-  text: {},
+  text: {}
 };
 
 export default class ChatBubble extends React.Component {
@@ -26,24 +28,41 @@ export default class ChatBubble extends React.Component {
       this.props.message.id === 0
         ? {
             ...styles.chatbubble,
-            ...bubblesCentered ? {} : styles.chatbubbleOrientationNormal,
+            ...(bubblesCentered ? {} : styles.chatbubbleOrientationNormal),
             ...chatbubble,
-            ...userBubble,
+            ...userBubble
           }
         : {
             ...styles.chatbubble,
             ...styles.recipientChatbubble,
-            ...bubblesCentered
+            ...(bubblesCentered
               ? {}
-              : styles.recipientChatbubbleOrientationNormal,
+              : styles.recipientChatbubbleOrientationNormal),
             ...chatbubble,
-            ...userBubble,
+            ...userBubble
           };
 
+    if (this.props.message.timestamp) {
+      return (
+        <Tooltip text={moment(this.props.message.timestamp).fromNow()}>
+          <div
+            style={{
+              ...styles.chatbubbleWrapper
+            }}
+          >
+            <div style={chatBubbleStyles}>
+              <p style={{ ...styles.p, ...text }}>
+                {this.props.message.message}
+              </p>
+            </div>
+          </div>
+        </Tooltip>
+      );
+    }
     return (
       <div
         style={{
-          ...styles.chatbubbleWrapper,
+          ...styles.chatbubbleWrapper
         }}
       >
         <div style={chatBubbleStyles}>
