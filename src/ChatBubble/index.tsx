@@ -44,7 +44,10 @@ export default class ChatBubble extends React.Component {
 
     if (this.props.message.timestamp) {
       return (
-        <Tooltip text={moment(this.props.message.timestamp).fromNow()}>
+        <Tooltip
+          style={{ zIndex: 1000 }}
+          text={moment(this.props.message.timestamp).fromNow()}
+        >
           <div
             style={{
               ...styles.chatbubbleWrapper
